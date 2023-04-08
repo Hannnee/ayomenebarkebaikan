@@ -32,12 +32,6 @@
 
 ### Pull request
 
-- Pull from github (public repository)
-- git init
-- git remote add origin https://github.com/Hannnee/ayomenebarkebaikan.git
-- git fetch
-- git checkout master
-
 - Clone from github (public repository)
 - git clone https://github.com/Hannnee/ayomenebarkebaikan.git
 
