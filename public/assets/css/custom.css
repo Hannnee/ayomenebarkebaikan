@@ -1,0 +1,48 @@
+.letter-space-1 {
+    letter-spacing: 1px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+label.required:after {
+    content: ' *';
+    color:red;
+}
+
+.text-truncate-parent {
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+
+.text-truncate {
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table-scrolled {
+    display: block;
+    overflow-x:scroll;
+    white-space:nowrap;
+}
+
+.table-preview {
+    min-width: 150px;
+}
+
+.middle-text {
+    vertical-align: middle;
+}
+
+.list-menu a {
+    vertical-align: middle;
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s;
+}
