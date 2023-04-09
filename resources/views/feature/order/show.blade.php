@@ -13,10 +13,10 @@
                 <div class="invoice-contact">
                     <span class="overline-title">Invoice To</span>
                     <div class="invoice-contact-info">
-                        <h4 class="title">{{ $order->customer->name }}</h4>
+                        <h4 class="title">{!! isset($order->customer->name) ? $order->customer->name : '<span class="badge badge-dim rounded-pill bg-danger badge-sm">Deleted customer</span>' !!}</h4>
                         <ul class="list-plain">
                             <li><em class="icon ni ni-map-pin-fill"></em><span>{{ $order->address }}</span></li>
-                            <li><em class="icon ni ni-call-fill"></em><span>{{ $order->customer->phone }}</span></li>
+                            <li><em class="icon ni ni-call-fill"></em><span>{{ isset($order->customer->phone) ? $order->customer->phone : '-' }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             @foreach ($order->orderItems as $item)
                                 <tr>
                                     <td>#{{ $item->id }}</td>
-                                    <td>{{ $item->item->name }}</td>
+                                    <td>{!! isset($item->item->name) ? $item->item->name : '<span class="badge badge-dim rounded-pill bg-danger badge-xs">Deleted item</span>' !!}</td>
                                     <td>{{ to_rupiah($item->price) }}</td>
                                     <td>{{ $item->qty }}</td>
                                     <td>{{ to_rupiah($item->price * $item->qty) }}</td>

@@ -39,8 +39,8 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        $this->customerRepository->create($request->all());
-        return to_route('customer.index');
+        $customer = $this->customerRepository->create($request->all());
+        return $this->callback('customer.index', $customer);
     }
 
     /**
@@ -65,6 +65,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer = $this->customerRepository->update($customer, $request->all());
+        alert('success', 'Successfully update data');
         return to_route('customer.index');
     }
 
@@ -74,6 +75,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+        alert('success', 'Successfully delete data');
         return back();
     }
 

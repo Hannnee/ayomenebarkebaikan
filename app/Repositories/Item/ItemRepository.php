@@ -3,6 +3,7 @@
 namespace App\Repositories\Item;
 
 use App\Models\Item;
+use Illuminate\Support\Facades\DB;
 
 class ItemRepository implements ItemRepositoryInterface
 {
@@ -26,13 +27,26 @@ class ItemRepository implements ItemRepositoryInterface
 
     public function create($attributes)
     {
-        $data = $this->model::create([
-            'name' => $attributes['name'],
-            'price' => $attributes['price'],
-            'description' => $attributes['description'],
-        ]);
+        DB::beginTransaction();
+        try {
+            $this->model::create([
+                'name' => $attributes['name'],
+                'price' => $attributes['price'],
+                'description' => $attributes['description'],
+            ]);
+            DB::commit();
 
-        return $data;
+            return [
+                'status' => 200,
+                'message' => 'success'
+            ];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return [
+                'status' => 500,
+                'message' => $e->getMessage()
+            ];
+        }
     }
 
     public function update($item, $attributes)

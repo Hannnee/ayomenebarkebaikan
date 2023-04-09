@@ -5,6 +5,7 @@ namespace App\Repositories\User;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Role\RoleRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -16,7 +17,6 @@ class UserRepository implements UserRepositoryInterface
     {
         $this->model = $model;
         $this->role = $role;
-
     }
 
     public function getList()
@@ -31,16 +31,29 @@ class UserRepository implements UserRepositoryInterface
 
     public function create($attributes)
     {
-        $user = $this->model::create([
-            'name'              => $attributes['name'],
-            'email'             => $attributes['email'],
-            'email_verified_at' => now(),
-            'password'          => Hash::make($attributes['password']),
-        ]);
-        $role = $this->role->getById($attributes['role']);
+        DB::beginTransaction();
+        try {
+            $user = $this->model::create([
+                'name'              => $attributes['name'],
+                'email'             => $attributes['email'],
+                'email_verified_at' => now(),
+                'password'          => Hash::make($attributes['password']),
+            ]);
+            $role = $this->role->getById($attributes['role']);
+            $user->assignRole($role);
 
-        $user->assignRole($role);
-        return $user;
+            DB::commit();
+            return [
+                'status' => 200,
+                'message' => 'success'
+            ];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return [
+                'status' => 500,
+                'message' => $e->getMessage()
+            ];
+        }
     }
 
     public function update($user, $attributes)

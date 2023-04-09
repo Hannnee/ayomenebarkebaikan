@@ -43,8 +43,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->create($request->all());
-        return to_route('user.index');
+        $user = $this->userRepository->create($request->all());
+        return $this->callback('user.index', $user);
     }
 
     /**
@@ -70,6 +70,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user = $this->userRepository->update($user, $request->all());
+        alert('success', 'Successfully update data');
         return to_route('user.index');
     }
 
@@ -79,6 +80,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        alert('success', 'Successfully delete data');
         return back();
     }
 }

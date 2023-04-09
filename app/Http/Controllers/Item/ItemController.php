@@ -39,8 +39,8 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $this->itemRepository->create($request->all());
-        return to_route('item.index');
+        $item = $this->itemRepository->create($request->all());
+        return $this->callback('item.index', $item);
     }
 
     /**
@@ -65,6 +65,7 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $item = $this->itemRepository->update($item, $request->all());
+        alert('success', 'Successfully update data');
         return to_route('item.index');
     }
 
@@ -74,6 +75,7 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
+        alert('success', 'Successfully delete data');
         return back();
     }
 }

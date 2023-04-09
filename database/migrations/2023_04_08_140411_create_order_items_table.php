@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('discount');
             $table->decimal('total', 15, 2);
             $table->string('note')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

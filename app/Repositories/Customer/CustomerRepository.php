@@ -3,6 +3,7 @@
 namespace App\Repositories\Customer;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 
 class CustomerRepository implements CustomerRepositoryInterface
 {
@@ -26,13 +27,26 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     public function create($attributes)
     {
-        $data = $this->model::create([
-            'name' => $attributes['name'],
-            'address' => $attributes['address'],
-            'phone' => $attributes['phone'],
-        ]);
+        DB::beginTransaction();
+        try {
+            $this->model::create([
+                'name' => $attributes['name'],
+                'address' => $attributes['address'],
+                'phone' => $attributes['phone'],
+            ]);
+            DB::commit();
 
-        return $data;
+            return [
+                'status' => 200,
+                'message' => 'success'
+            ];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return [
+                'status' => 500,
+                'message' => $e->getMessage()
+            ];
+        }
     }
 
     public function update($item, $attributes)

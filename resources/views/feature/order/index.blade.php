@@ -18,7 +18,7 @@
                 <th class="nk-tb-col nk-tb-col-check ff-mono"><span>No</span></th>
                 <th class="nk-tb-col ff-mono"><span>Code</span></th>
                 <th class="nk-tb-col tb-col-md ff-mono"><span>Date</span></th>
-                <th class="nk-tb-col tb-col-md ff-mono"><span>Customer</span></th>
+                <th class="nk-tb-col tb-col-md ff-mono"><span>Customer name</span></th>
                 <th class="nk-tb-col tb-col-md ff-mono"><span>Total</span></th>
                 <th class="nk-tb-col nk-tb-col-tools">
                     <ul class="nk-tb-actions gx-1 my-n1">
@@ -40,7 +40,7 @@
                         <span class="letter-space-1">{{ $order->created_time() }}</span>
                     </td>
                     <td class="nk-tb-col tb-col-md">
-                        <span class="letter-space-1">{{ $order->customer->name }}</span>
+                        <span class="letter-space-1">{!! isset($order->customer->name) ? $order->customer->name : '<span class="badge badge-dim rounded-pill bg-danger badge-sm">Deleted customer</span>' !!}</span>
                     </td>
                     <td class="nk-tb-col tb-col-md">
                         <span class="letter-space-1">{{ to_rupiah($order->total) }}</span>

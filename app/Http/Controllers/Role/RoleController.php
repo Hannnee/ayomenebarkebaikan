@@ -42,8 +42,8 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        $this->roleRepository->create($request->all());
-        return to_route('role.index');
+        $role = $this->roleRepository->create($request->all());
+        return $this->callback('role.index', $role);
     }
 
     /**
@@ -77,6 +77,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
+        alert('success', 'Successfully delete data');
         return back();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\MessageTrait;
 use App\Traits\TimeTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, TimeTrait, MessageTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, TimeTrait;
 
     /**
      * The attributes that are mass assignable.

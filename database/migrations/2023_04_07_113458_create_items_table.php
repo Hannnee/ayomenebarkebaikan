@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 15, 2);
             $table->longText('description');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
