@@ -28,7 +28,8 @@
 - Route model binding
 - Traits Uuid
 - Seeder data
-- Role base access
+- Permission base access
+- Soft delete
 
 ### Pull request
 
@@ -42,3 +43,8 @@
 - php artisan key:generate
 - php artisan migrate:fresh --seed
 - php artisan serve
+
+### Login account
+
+- super admin || email : superadmin@gmail.com / password : 12345678
+- staff || email : staff@gmail.com / password : 12345678
