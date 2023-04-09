@@ -39,7 +39,7 @@
 ### Setup project
 
 - Setting database .env
-- composer install | composer update
+- composer install / composer update
 - php artisan key:generate
 - php artisan migrate:fresh --seed
 - php artisan serve
