@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Customer\StoreCustomerRequest;
 use App\Http\Requests\Customer\UpdateCustomerRequest;
 use App\Models\Customer;
-use App\Repositories\Customer\CustomerRepository;
+use App\Repositories\Customer\CustomerRepositoryInterface;
 
 class CustomerController extends Controller
 {
     protected $customerRepository;
 
-    public function __construct(CustomerRepository $c)
+    public function __construct(CustomerRepositoryInterface $c)
     {
         $this->customerRepository = $c;
     }

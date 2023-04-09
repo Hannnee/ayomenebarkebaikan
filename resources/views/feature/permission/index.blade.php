@@ -36,7 +36,7 @@
                                     <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <ul class="link-list-opt no-bdr ff-mono letter-space-1">
-                                            <li><a href="{{ 'permission/'.$permission->id }}"><em class="icon ni ni-eye"></em><span>Detail</span></a></li>
+                                            <li><a href="{{ route('permission.show', $permission->id) }}"><em class="icon ni ni-eye"></em><span>Detail</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Item\StoreItemRequest;
 use App\Http\Requests\Item\UpdateItemRequest;
 use App\Models\Item;
-use App\Repositories\Item\ItemRepository;
+use App\Repositories\Item\ItemRepositoryInterface;
 
 class ItemController extends Controller
 {
     protected $itemRepository;
 
-    public function __construct(ItemRepository $i)
+    public function __construct(ItemRepositoryInterface $i)
     {
         $this->itemRepository = $i;
     }

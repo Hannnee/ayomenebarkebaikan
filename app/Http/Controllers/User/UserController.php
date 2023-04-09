@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
-use App\Repositories\Role\RoleRepository;
-use App\Repositories\User\UserRepository;
+use App\Repositories\Role\RoleRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
 {
     protected $userRepository;
     protected $roleRepository;
 
-    public function __construct(UserRepository $u, RoleRepository $r)
+    public function __construct(UserRepositoryInterface $u, RoleRepositoryInterface $r)
     {
         $this->userRepository = $u;
         $this->roleRepository = $r;

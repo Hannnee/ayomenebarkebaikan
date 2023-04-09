@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Requests\Order\UpdateOrderRequest;
 use App\Models\Order;
-use App\Repositories\Customer\CustomerRepository;
-use App\Repositories\Item\ItemRepository;
-use App\Repositories\Order\OrderRepository;
+use App\Repositories\Customer\CustomerRepositoryInterface;
+use App\Repositories\Item\ItemRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,7 +17,7 @@ class OrderController extends Controller
     protected $customerRepository;
     protected $itemRepository;
 
-    public function __construct( OrderRepository $o, CustomerRepository $c, ItemRepository $i)
+    public function __construct( OrderRepositoryInterface $o, CustomerRepositoryInterface $c, ItemRepositoryInterface $i)
     {
         $this->orderRepository = $o;
         $this->customerRepository = $c;
