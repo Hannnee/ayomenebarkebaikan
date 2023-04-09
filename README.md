@@ -39,7 +39,7 @@
 ### Setup project
 
 - Setting database .env
-- composer install / composer update || if err try npm install and npm run prod
+- composer install / composer update || sometimes need : npm install and npm run prod
 - php artisan key:generate
 - php artisan migrate:fresh --seed
 - php artisan serve
