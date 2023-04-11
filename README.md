@@ -26,6 +26,7 @@
 - Repository pattern
 - Form request 
 - Route model binding
+- Middleware
 - Traits Uuid
 - Seeder data
 - Permission base access
